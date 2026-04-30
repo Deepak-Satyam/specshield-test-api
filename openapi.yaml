@@ -3,7 +3,7 @@ openapi: "3.0.0"
 info:
   title: SpecShield Test API
   description: Sample User Management API for testing SpecShield GitHub Integration
-  version: "1.0.0"
+  version: "2.0.0"
   contact:
     name: SpecShield
     url: https://specshield.io
@@ -70,30 +70,16 @@ paths:
         "404":
           description: User not found
 
-    delete:
-      summary: Delete a user
-      operationId: deleteUser
-      tags: [Users]
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "204":
-          description: User deleted successfully
-        "404":
-          description: User not found
+    # ── DELETE /users/{id} REMOVED (breaking: endpoint removed) ────────────
 
 components:
   schemas:
     User:
       type: object
+      # ── 'email' removed from required list (breaking change) ───────────────
       required:
         - id
         - name
-        - email
       properties:
         id:
           type: integer
@@ -101,10 +87,7 @@ components:
         name:
           type: string
           example: "Alice Smith"
-        email:
-          type: string
-          format: email
-          example: "alice@example.com"
+        # ── 'email' field removed entirely (breaking: field removed) ─────────
         createdAt:
           type: string
           format: date-time
@@ -113,12 +96,8 @@ components:
       type: object
       required:
         - name
-        - email
+      # ── 'email' removed from required in request body (breaking) ───────────
       properties:
         name:
           type: string
           example: "Alice Smith"
-        email:
-          type: string
-          format: email
-          example: "alice@example.com"
