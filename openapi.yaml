@@ -3,7 +3,7 @@ openapi: "3.0.0"
 info:
   title: SpecShield Test API
   description: Sample User Management API for testing SpecShield GitHub Integration
-  version: "1.0.0"
+  version: "1.1.0"
   contact:
     name: SpecShield
     url: https://specshield.io
@@ -86,6 +86,50 @@ paths:
         "404":
           description: User not found
 
+  # ── NEW ENDPOINT ADDED (non-breaking addition) ──────────────────────────
+  /products:
+    get:
+      summary: Get all products
+      operationId: listProducts
+      tags: [Products]
+      parameters:
+        - name: category
+          in: query
+          required: false
+          description: Filter by product category
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+  /products/{id}:
+    get:
+      summary: Get product by ID
+      operationId: getProductById
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Product found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: Product not found
+
 components:
   schemas:
     User:
@@ -122,3 +166,28 @@ components:
           type: string
           format: email
           example: "alice@example.com"
+
+    # ── NEW SCHEMA (non-breaking addition) ──────────────────────────────
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - price
+      properties:
+        id:
+          type: integer
+          example: 101
+        name:
+          type: string
+          example: "Laptop Pro"
+        price:
+          type: number
+          format: double
+          example: 1299.99
+        category:
+          type: string
+          example: "Electronics"
+        inStock:
+          type: boolean
+          example: true
