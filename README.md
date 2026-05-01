@@ -119,3 +119,5 @@ specshield-test-api/
 | v1.0.0 | `openapi.yaml` (main) | Baseline: `/users`, `/users/{id}` |
 | v1.1.0 | `tc03-nonbreaking/openapi.yaml` | Adds `/products`, `/products/{id}` |
 | v2.0.0 | `tc04-breaking/openapi.yaml` | Removes `email` field + `DELETE /users/{id}` |
+
+<!-- Updated by TC-02 test script -->
