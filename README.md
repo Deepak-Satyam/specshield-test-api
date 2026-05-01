@@ -2,7 +2,7 @@
 
 A minimal Spring Boot REST API used to test the **SpecShield GitHub Integration** end-to-end.
 
-## What This Project Tests
+## What This Project Tests : Updated
 
 | Test Case | Scenario | Expected SpecShield Result |
 |-----------|----------|---------------------------|
